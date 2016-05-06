@@ -18,7 +18,7 @@
     "flow"
   ],
   "author": "iamchenxin",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/iamchenxin/es7-postgres/issues"
   },
