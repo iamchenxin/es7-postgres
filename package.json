@@ -1,6 +1,6 @@
 {
   "name": "es7-postgres",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "es7 and flow wraper for node-postgres",
   "scripts": {
     "jest": "NODE_ENV=test jest $@",
@@ -52,6 +52,6 @@
   },
   "dependencies": {
     "pg": "^4.5.5",
-    "tagged-literals": "^0.0.5"
+    "tagged-literals": "^0.0.4"
   }
 }
