@@ -68,10 +68,6 @@ describe('test ClientWrapper', function() {
       expect(e).toEqual(new Error('ClientWrapper.query only accept sqlCommand'
       +`return from SQL tagged template,but the input is [${sql}]`));
     }
-    client.query(sql).catch((e)=>{
-      expect(e).toEqual(new Error('ClientWrapper.query only accept sqlCommand'
-      +`return from SQL tagged template,but the input is ${sql}`));
-    });
   });
 
 });

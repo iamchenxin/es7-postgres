@@ -2,7 +2,7 @@
  * @flow
  */
 declare module 'es7-postgres' {
-// copy from es6-literals
+// copy from tagged-literals
   declare type InsertValue = {
     value: string
   };
@@ -14,9 +14,9 @@ declare module 'es7-postgres' {
 
   declare function inst(value:string):InsertValue;
 
-  declare function SQL(strs:string[], ...args:mixed[]): sqlResult;
-// ---------------------------
+  declare function SQL(strs:string[], ...args:mixed[]): pgQueryConfig;
 
+// --client.js-------------------------
   declare type Result = {
     command:string,
     rowCount:number,
@@ -26,8 +26,11 @@ declare module 'es7-postgres' {
   };
 
   declare type queryParams = {
-    name: string,
-    rowHandle: (row:mixed, result:Result) =>void
+    V:?mixed[],
+    values:?mixed[],
+    N:?string,
+    name: ?string,
+    rowHandle: ?(row:mixed, result:Result) =>void
   };
 
   declare interface ClientWrapper {
@@ -35,19 +38,13 @@ declare module 'es7-postgres' {
     query(sqlCommand:pgQueryConfig, params: ?queryParams ):Promise<Result>;
   }
 
+// -- pg.js --
   declare type pgWrapper = {
     pg:mixed,
     connect(conString : string):Promise<ClientWrapper>;
   };
 
-  declare type tsType = {
-    style : {
-      color: 'black'|'white'|'red',
-      name: 'tom'|'jack'
-    },
-    user : 'good'|'bad'
-  };
-
+// -- module export --
   declare var exports: {
     pgWrapper:pgWrapper,
     SQL:SQL,
