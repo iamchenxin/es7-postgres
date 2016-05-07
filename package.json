@@ -2,7 +2,6 @@
   "name": "es7-postgres",
   "version": "0.1.9",
   "description": "es7 and flow wraper for node-postgres",
-  "main": "index.js",
   "scripts": {
     "jest": "NODE_ENV=test jest $@",
     "test": "npm run jest",
@@ -23,6 +22,14 @@
     "url": "https://github.com/iamchenxin/es7-postgres/issues"
   },
   "homepage": "https://github.com/iamchenxin/es7-postgres#readme",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "header/",
+    "lib/"
+  ],
+  "main": "index.js",
   "devDependencies": {
     "babel-cli": "^6.8.0",
     "babel-core": "^6.8.0",
@@ -45,6 +52,6 @@
   },
   "dependencies": {
     "pg": "^4.5.5",
-    "tagged-literals": "^0.0.4"
+    "tagged-literals": "^0.0.5"
   }
 }
