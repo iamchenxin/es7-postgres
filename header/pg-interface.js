@@ -9,7 +9,8 @@ declare module 'es7-postgres' {
 
   declare type pgQueryConfig = {
     text:string,
-    values:mixed[]
+    values:mixed[],
+    name?:string
   };
 
   declare function inst(value:string):InsertValue;

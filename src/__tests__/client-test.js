@@ -46,6 +46,7 @@ describe('test ClientWrapper', function() {
     }
   });
 
+/*
   xit('query must be async function',
   function() {
     const sql = 'select * from post';
@@ -59,6 +60,7 @@ describe('test ClientWrapper', function() {
       expect(e).toBe('async function should never do a normal throw');
     }
   });
+  */
 
   pit('do not accept string ~', async function() {
     const sql = 'select * from post';
