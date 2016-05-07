@@ -13,11 +13,11 @@ type Result = {
 };
 
 type queryParams = {
-  V:?mixed[],
-  values:?mixed[],
-  N:?string,
-  name: ?string,
-  rowHandle: ?(row:mixed, result:Result) =>void
+  V?:mixed[],
+  values?:mixed[],
+  N?:string,
+  name?:string,
+  rowHandle?:(row:mixed, result:Result) =>void
 };
 
 // function inside a class must be arrow function!
@@ -30,7 +30,7 @@ class ClientWrapper {
     this.done = done;
   }
   async query(sqlCommand:pgQueryConfig, params: ?queryParams ):Promise<Result> {
-    devError(sqlCommand.text==null,'ClientWrapper.query only accept sqlCommand'
+    devError(sqlCommand.text==null, 'ClientWrapper.query only accept sqlCommand'
       +`return from SQL tagged template,but the input is [${sqlCommand}]`);
 
     let rowHandle;

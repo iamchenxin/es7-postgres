@@ -26,11 +26,11 @@ declare module 'es7-postgres' {
   };
 
   declare type queryParams = {
-    V:?mixed[],
-    values:?mixed[],
-    N:?string,
-    name: ?string,
-    rowHandle: ?(row:mixed, result:Result) =>void
+    V?:mixed[],
+    values?:mixed[],
+    N?:string,
+    name?:string,
+    rowHandle?:(row:mixed, result:Result) =>void
   };
 
   declare interface ClientWrapper {
