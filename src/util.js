@@ -12,9 +12,9 @@ function multiAssign(...srcKeyNames) {
 
 function devError(condition, msg) {
   if (condition) {
-    if(typeof msg == 'string'){
+    if (typeof msg == 'string') {
       throw new Error(msg);
-    }else {
+    } else {
       throw msg;
     }
   }

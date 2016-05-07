@@ -7,12 +7,12 @@ import {SQL} from 'tagged-literals';
 
 describe('test ClientWrapper', function() {
   let pg_client;
-  let done ;
-  let client ;
+  let done;
+  let client;
   const content = 'abc';
   const name = 'jack';
 
-  beforeEach(function(){
+  beforeEach(function() {
     pg_client = {
       query:jest.fn()
     };
@@ -38,9 +38,9 @@ describe('test ClientWrapper', function() {
   pit('query must be async function',
   async function() {
     const sql = 'select * from post';
-    try{
+    try {
       await client.query(sql);
-    }catch(e){
+    } catch (e) {
       expect(e).toEqual(new Error('ClientWrapper.query only accept sqlCommand'
       +`return from SQL tagged template,but the input is [${sql}]`));
     }
@@ -49,22 +49,22 @@ describe('test ClientWrapper', function() {
   xit('query must be async function',
   function() {
     const sql = 'select * from post';
-    try{
-      return client.query(sql).catch((e)=>{
+    try {
+      return client.query(sql).catch((e) => {
         console.log(e);
         expect(e).toEqual(new Error('ClientWrapper.query only accept sqlCommand'
         +`return from SQL tagged template,but the input is [${sql}]`));
       });
-    }catch(e){
+    } catch (e) {
       expect(e).toBe('async function should never do a normal throw');
     }
   });
 
-  pit('do not accept string ~',async function() {
+  pit('do not accept string ~', async function() {
     const sql = 'select * from post';
-    try{
+    try {
       await client.query(sql);
-    }catch(e){
+    } catch (e) {
       expect(e).toEqual(new Error('ClientWrapper.query only accept sqlCommand'
       +`return from SQL tagged template,but the input is [${sql}]`));
     }

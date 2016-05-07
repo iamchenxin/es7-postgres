@@ -3,6 +3,7 @@
  */
 
 const pg = require('pg');
+
 import ClientWrapper from './client.js';
 
 const pgWrapper = {

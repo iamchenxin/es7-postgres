@@ -18,7 +18,7 @@ gulp.task('common', function() {
 
 function stdGulpTrans(src, dst) {
   var sourceRoot = path.join(__dirname, src);
-  var srcPath = [src+'/**/*.js' , '!'+src+'/**/__tests__/**'];
+  var srcPath = [src+'/**/*.js', '!'+src+'/**/__tests__/**'];
   return gulp
     .src(srcPath)
     .pipe(sourcemaps.init())

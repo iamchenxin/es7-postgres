@@ -9,7 +9,7 @@ describe('test pgWrapper', () => {
   });
 
   it('should call pg with', () => {
-    const prom = pgWrapper.connect(conString);
+    pgWrapper.connect(conString);
     expect(pgWrapper.pg.connect.mock.calls[0][0]).toBe(conString);
     expect(typeof pgWrapper.pg.connect.mock.calls[0][1]).toBe('function');
   //  let callback =jest.fn();

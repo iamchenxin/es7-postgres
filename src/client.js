@@ -2,7 +2,7 @@
  * @flow
  */
 import type {pgQueryConfig} from 'tagged-literals';
-import {multiAssign, devError} from './util';
+import { devError} from './util';
 
 type Result = {
   command:string,
