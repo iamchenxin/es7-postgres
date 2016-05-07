@@ -60,18 +60,25 @@ describe('test ClientWrapper', function() {
     }
   });
 
-  xit('do not accept string ~',function() {
+  pit('do not accept string ~',async function() {
     const sql = 'select * from post';
+    try{
+      await client.query(sql);
+    }catch(e){
+      expect(e).toEqual(new Error('ClientWrapper.query only accept sqlCommand'
+      +`return from SQL tagged template,but the input is [${sql}]`));
+    }
     client.query(sql).catch((e)=>{
-      expect(e).toBe('ClientWrapper.query only accept sqlComman'
-      +`return from SQL tagged template,but the input is ${sql}`);
+      expect(e).toEqual(new Error('ClientWrapper.query only accept sqlCommand'
+      +`return from SQL tagged template,but the input is ${sql}`));
     });
   });
 
 });
-
+/*
 function tmp(){
   console.log(pg_client.query.mock.calls[0][0]);
   console.log(pg_client.query.mock.calls[0][1]);
   expect(pg_client.query.mock.calls[0][1]).toEqual(jasmine.any(Function));
 }
+*/

@@ -1,7 +1,7 @@
 /*
  * @flow
  */
-import type {sqlResult} from 'tagged-literals';
+import type {pgQueryConfig} from 'tagged-literals';
 import {multiAssign, devError} from './util';
 
 type Result = {
@@ -13,11 +13,11 @@ type Result = {
 };
 
 type queryParams = {
-  V:mixed[],
-  values:mixed[],
-  N:string,
-  name: string,
-  rowHandle: (row:mixed, result:Result) =>void
+  V:?mixed[],
+  values:?mixed[],
+  N:?string,
+  name: ?string,
+  rowHandle: ?(row:mixed, result:Result) =>void
 };
 
 // function inside a class must be arrow function!
@@ -29,21 +29,13 @@ class ClientWrapper {
     this.client = client;
     this.done = done;
   }
-  async query(sqlCommand: sqlResult, params: ?queryParams ):Promise<Result> {
+  async query(sqlCommand:pgQueryConfig, params: ?queryParams ):Promise<Result> {
     devError(sqlCommand.text==null,'ClientWrapper.query only accept sqlCommand'
       +`return from SQL tagged template,but the input is [${sqlCommand}]`);
 
-    let pgCommand: sqlResult|string = sqlCommand;
-    // if there is no values in sqlCommand
-    // just set pgCommand passed to pg to string. for fast speed?
-    if ( (sqlCommand.values==null) || (sqlCommand.values == [])) {
-      pgCommand = sqlCommand.text;
-    }
     let rowHandle;
     if (params) {
-      rowHandle = params.rowHandle;
-
-/* set N|name => name, V|values => values;
+/*    // set N|name => name, V|values => values;
       params.assign = multiAssign;
       params.assign('V','values').to(sqlCommand,'values');
       params.assign('N','name').to(sqlCommand,'name');
@@ -53,6 +45,15 @@ class ClientWrapper {
       params.N && (sqlCommand.name = params.N);
       params.values && (sqlCommand.values = params.values);
       params.V && (sqlCommand.values = params.V);
+
+      rowHandle = params.rowHandle;
+    }
+
+    let pgCommand: pgQueryConfig|string = sqlCommand;
+    // if there is no values in sqlCommand
+    // just set pgCommand passed to pg to string. for fast speed?
+    if ( (sqlCommand.values==null) || (sqlCommand.values == [])) {
+      pgCommand = sqlCommand.text;
     }
 
     if (rowHandle) { // use node-postgres 's event system
@@ -80,6 +81,7 @@ class ClientWrapper {
         });
       });
     }
+
   }
 }
 

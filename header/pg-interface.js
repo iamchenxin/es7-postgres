@@ -7,7 +7,7 @@ declare module 'es7-postgres' {
     value: string
   };
 
-  declare type sqlResult = {
+  declare type pgQueryConfig = {
     text:string,
     values:mixed[]
   };
@@ -32,7 +32,7 @@ declare module 'es7-postgres' {
 
   declare interface ClientWrapper {
     client: any;
-    query(sqlCommand: sqlResult, params: ?queryParams ):Promise<Result>;
+    query(sqlCommand:pgQueryConfig, params: ?queryParams ):Promise<Result>;
   }
 
   declare type pgWrapper = {

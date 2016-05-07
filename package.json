@@ -52,6 +52,6 @@
   },
   "dependencies": {
     "pg": "^4.5.5",
-    "tagged-literals": "^0.0.4"
+    "tagged-literals": "0.0.5"
   }
 }
